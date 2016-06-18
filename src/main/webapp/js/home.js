@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
-    var $articles = $("#container"),
+    var $techNews = $("#techNews"),
+        $universityNews = $("#universityNews"),
         articleData = null;
 
     $.getJSON("rest/article", function(data) {
@@ -8,7 +9,12 @@ $(document).ready(function() {
 
         for (var i = 0; i < articleData.length; i++) {
             var articleItem = articleData[i];
-            $articles.append('<article><h2 class="articleHeading">' + articleItem.id + '</h2><p class="author">published by Sevdalin Zhelyazkov</p><p class="articleContent">' + articleItem.text + '</p></article>');
+            if(articleItem.articleType == "TechNews") {
+                $techNews.append('<article><h2 class="articleHeading">' + articleItem.id + '</h2><p class="author">published by Sevdalin Zhelyazkov</p><p class="articleContent">' + articleItem.text + '</p></article>');
+            }
+            else {
+                $universityNews.append('<article><h2 class="articleHeading">' + articleItem.id + '</h2><p class="author">published by Sevdalin Zhelyazkov</p><p class="articleContent">' + articleItem.text + '</p></article>');
+            }
         }
     });
 
