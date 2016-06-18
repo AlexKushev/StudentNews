@@ -62,7 +62,7 @@ public class Article implements Serializable {
 		return title;
 	}
 
-	public void setHeader(String title) {
+	public void setTitle(String title) {
 		this.title = title;
 	}
 
@@ -100,7 +100,7 @@ public class Article implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Article [id=" + id + ", header=" + title + ", text=" + text + ", author=" + author + ", postDate="
+		return "Article [id=" + id + ", title=" + title + ", text=" + text + ", author=" + author + ", postDate="
 				+ postDate + ", articleType=" + articleType + "]";
 	}
 

@@ -1,6 +1,6 @@
 package com.studentsnews.dao;
 
-import java.util.List;
+import java.util.Collection;
 
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
@@ -19,10 +19,10 @@ public class ArticleDAO {
 		em.persist(article);
 	}
 	
-	 public List<Article> getAllArticles() {
+	 public Collection<Article> getAllArticles() {
 	    	String txtQuery = "SELECT a FROM Article a";
 	    	TypedQuery<Article> query = em.createQuery(txtQuery, Article.class);
 	    	return query.getResultList();
-	    }
+	 }
 	
 }

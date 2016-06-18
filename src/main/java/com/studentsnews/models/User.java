@@ -45,7 +45,6 @@ public class User implements Serializable {
 	}
 
 
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;

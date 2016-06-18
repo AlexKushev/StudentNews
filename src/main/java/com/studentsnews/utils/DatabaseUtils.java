@@ -1,8 +1,6 @@
 package com.studentsnews.utils;
 
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -17,22 +15,22 @@ import com.studentsnews.models.User;
 
 @Stateless
 public class DatabaseUtils {
-    
-    private static User[] USERS = { 
-    		new User("Alex", "Kushev", "alle3x", "123"),
+
+	static String text1 = "Lorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta veLorem ipsur nisi elit, porta vel";
+	static String text2 = "Sed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultricesSed malesuada dui non enim volutpat ultrices";
+	
+	private static User[] USERS = { new User("Alex", "Kushev", "alle3x", "123"),
 			new User("Sevdalin", "zhelyzkov", "sevito", "1235") };
-    
-    private static Article[] ARTICLES = {
-    		new Article("Title1", "Text1", new Date(), ArticleType.TechNews),
-    		new Article("Title2", "Text2", new Date(), ArticleType.UniversityNews)
-    };
+
+	private static Article[] ARTICLES = { new Article("Title1", text1, new Date(), ArticleType.TechNews),
+			new Article("Title2", text2, new Date(), ArticleType.UniversityNews) };
 
 	@PersistenceContext
 	private EntityManager em;
 
 	@EJB
 	private UserDAO userDAO;
-	
+
 	@EJB
 	private ArticleDAO articleDAO;
 
@@ -52,9 +50,9 @@ public class DatabaseUtils {
 			userDAO.addUser(user);
 		}
 	}
-	
+
 	private void addTestArticles() {
-		for( Article article : ARTICLES) {
+		for (Article article : ARTICLES) {
 			articleDAO.addArticle(article);
 		}
 	}
