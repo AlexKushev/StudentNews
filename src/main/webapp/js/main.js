@@ -61,10 +61,17 @@ $(document).ready(function() {
             data: JSON.stringify(oUserData),
             statusCode: {
                 401: function() {
-                    console.log("Wrong username or password!");
+                    alert("Wrong username or password!");
                 },
                 200: function() {
-                	console.log("Success 200 login!");
+
+                    $.ajax({
+                        type: "GET",
+                        complete: function(data) {
+                            alert("Вие влязохте успешно в системата!");
+                            window.location.replace("home.html");
+                        }
+                    });
                 }
             }
         });
