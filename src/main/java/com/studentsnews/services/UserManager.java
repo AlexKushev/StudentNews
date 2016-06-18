@@ -44,7 +44,6 @@ public class UserManager {
 				if (userDAO.addUser(newUser)) {
 					return RESPONSE_OK;
 				}
-
 			}
 		}
 		return Response.status(401).build();
@@ -63,6 +62,24 @@ public class UserManager {
 		System.out.println(curUser);
 		context.setCurrentUser(curUser);
 		return RESPONSE_OK;
+	}
+	
+	@Path("current")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getUser() {
+		if (context.getCurrentUser() == null) {
+			System.out.println(context.getCurrentUser().getFirstName());
+			return "null";
+		}
+		return context.getCurrentUser().toString();
+	}
+	
+	@Path("logout")
+	@GET
+	@Consumes(MediaType.TEXT_PLAIN)
+	public void logoutUser() {
+		context.setCurrentUser(null);
 	}
 
 }
