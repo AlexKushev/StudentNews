@@ -11,7 +11,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  */
 @NamedQueries({ @NamedQuery(name = "user.findById", query = "SELECT u FROM User u WHERE u.id = :id"),
-	@NamedQuery(name = "user.getAllUsers", query = "SELECT u FROM User u")})
+	@NamedQuery(name = "user.getAllUsers", query = "SELECT u FROM User u"),
+	@NamedQuery(name = "user.findUserByUserName", query = "SELECT u FROM User u WHERE u.userName = :userName")})
 @Entity
 @XmlRootElement
 
@@ -24,7 +25,6 @@ public class User implements Serializable {
 		super();
 	}
 	
-	
 
 	public User(String firstName, String lastName, String userName, String password) {
 		super();
@@ -32,6 +32,16 @@ public class User implements Serializable {
 		this.lastName = lastName;
 		this.userName = userName;
 		this.password = password;
+	}
+	
+
+	public User(String firstName, String lastName, String userName, String password, List<Article> articles) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.userName = userName;
+		this.password = password;
+		this.articles = articles;
 	}
 
 
@@ -48,8 +58,8 @@ public class User implements Serializable {
 
 	private String password;
 
-	/*@OneToMany(mappedBy = "author")
-	private List<Article> articles;*/
+	@OneToMany(mappedBy = "author")
+	private List<Article> articles;
 
 	public Integer getId() {
 		return id;
@@ -90,14 +100,14 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-/*
+
 	public List<Article> getArticles() {
 		return articles;
 	}
 
 	public void setArticles(List<Article> articles) {
 		this.articles = articles;
-	}*/
+	}
 
 	@Override
 	public String toString() {
