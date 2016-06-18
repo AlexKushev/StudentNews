@@ -9,12 +9,26 @@ $(document).ready(function() {
 
         for (var i = 0; i < articleData.length; i++) {
             var articleItem = articleData[i];
-            if(articleItem.articleType == "TechNews") {
-                $techNews.append('<article><h2 class="articleHeading">' + articleItem.id + '</h2><p class="author">published by Sevdalin Zhelyazkov</p><p class="articleContent">' + articleItem.text + '</p></article>');
+            if (articleItem.articleType == "TechNews") {
+                $techNews.append('<article><h2 class="articleHeading">' + articleItem.title + '</h2><p class="author">posted on ' + articleItem.postDate + '</p><p class="articleContent">' + articleItem.text + '</p></article>');
             }
             else {
-                $universityNews.append('<article><h2 class="articleHeading">' + articleItem.id + '</h2><p class="author">published by Sevdalin Zhelyazkov</p><p class="articleContent">' + articleItem.text + '</p></article>');
+                $universityNews.append('<article><h2 class="articleHeading">' + articleItem.title + '</h2><p class="author">posted on ' + articleItem.postDate + '</p><p class="articleContent">' + articleItem.text + '</p></article>');
             }
+        }
+    });
+
+    $("#universityNewsBut").click(function(){
+        if($("#universityNews").hasClass('hidden')) {
+            $("#universityNews").removeClass('hidden');
+            $("#techNews").addClass('hidden');
+        }
+    });
+
+    $("#techNewsBut").click(function(){
+        if($("#techNews").hasClass('hidden')) {
+            $("#techNews").removeClass('hidden');
+            $("#universityNews").addClass('hidden');
         }
     });
 

@@ -45,6 +45,10 @@ a {
     height: 0;
 }
 
+.hidden {
+  display: block;
+}
+
 #wrap {
     max-width: 800px;
     width: 100%;
@@ -92,7 +96,7 @@ nav a {
     background: #165F78;
     padding: 12px 24px;
     font-size: 1.2em;
-    color: #eee;
+    color: #eee !important;
     transition-property: all;
     transition-duration: .7s;
     margin-bottom: 15px;
