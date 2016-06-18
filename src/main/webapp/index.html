@@ -18,11 +18,11 @@
         <header>
             <h1>Tech News</h1>
             <div class="login clear">
-                <a href="login.html">Login</a>
+                <a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
                 <a href="#" data-toggle="modal" data-target="#register-modal">Register</a>
             </div>
         </header>
-        <!-- <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
             <div class="modal-dialog">
                 <div class="loginmodal-container">
                     <h1>Login to Your Account</h1>
@@ -34,20 +34,20 @@
                     </form>
                 </div>
             </div>
-        </div> -->
+        </div>
         <div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
             <div class="modal-dialog">
                 <div class="loginmodal-container">
                     <h1>Register</h1>
                     <br />
-                    <form>
+                    <form method="post" role="form" accept-charset="utf-8" id="register-form">
                         <input type="text" name="fistName" id="register-firstName" placeholder="First Name">
                         <input type="text" name="lastName" id="register-lastName" placeholder="Last Name">
                         <input type="text" name="userName" id="register-userName" placeholder="Username">
                         <input type="password" name="password" id="register-password" placeholder="Password">
-                        <input type="password" name="passwordRespeat" id="register-password-re" placeholder="Repeat Password">
+                        <input type="password" name="passwordRepeat" id="register-password-re" placeholder="Repeat Password">
 
-                        <input type="submit" name="Register" id="register-button" class="login loginmodal-button register" value="Register">
+                        <input type="button" name="Register" id="register-button" class="login loginmodal-button register" value="Register">
                     </form>
                 </div>
             </div>

@@ -59,9 +59,6 @@ $(document).ready(function() {
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify(oUserData),
-            success: function(response) {
-                console.log("FDFGGDVF");
-            },
             statusCode: {
                 401: function() {
                     console.log("Wrong username or password!");
