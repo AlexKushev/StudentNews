@@ -63,7 +63,6 @@ $(document).ready(function() {
             type: "GET",
             statusCode: {
                 204: function() {
-                    alert("Успешно излизане от системата!");
                     window.location.replace("index.html");
                 }
             }
