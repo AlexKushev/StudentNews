@@ -17,7 +17,7 @@
 <body>
     <div id="wrap">
         <header>
-            <h1>News Website</h1>
+            <h1>Student News</h1>
             <div class="login clear">
                 <a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
                 <a href="#" data-toggle="modal" data-target="#register-modal">Register</a>
@@ -54,15 +54,13 @@
             </div>
         </div>
         <nav>
-            <a href="#" id="techNewsBut">Tech News</a>
-            <a href="#" id="universityNewsBut">University News</a>
+            <a href="#" data-tab="tab-1">Tech News</a>
+            <a href="#" data-tab="tab-2">University News</a>
         </nav>
         <div id="container">
-            <div id="techNews">
-                <strong>TECH NEWS</strong>
+            <div id="techNews" class="tab-1 tab-content current">
             </div>
-            <div id="universityNews" class="hidden">
-                <strong>UNIVERSITY NEWS</strong>
+            <div id="universityNews" class="tab-2 tab-content">
             </div>
         </div>
     </div>

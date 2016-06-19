@@ -68,7 +68,6 @@ $(document).ready(function() {
                     $.ajax({
                         type: "GET",
                         complete: function(data) {
-                            alert("Вие влязохте успешно в системата!");
                             window.location.replace("home.html");
                         }
                     });
