@@ -164,6 +164,10 @@ article p.author {
     font-style: italic;
 }
 
+article p {
+    word-wrap: break-word;
+}
+
 #techNews,
 #universityNews,
 #articleManager,
