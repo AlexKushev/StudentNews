@@ -67,10 +67,21 @@ public class ArticleDAO {
 				 article.setAuthor(rs.getString("author"));
 				 article.setText(rs.getString("text"));
 				 article.setTitle(rs.getString("title"));
+				 article.setId(Integer.parseInt(rs.getString("id")));
 		        
 				 currentArticles.add(article);
 		      }
 			 return currentArticles;
 	 }
+
+
+	public void deleteArticleById(int articleId) throws SQLException {
+		String query = "DELETE FROM article WHERE article.id = " + "'" + articleId + "'";
+		Statement statement = td.getStatement();
+		statement.executeUpdate(query);
+		//ResultSet rs = statement.executeQuery(query);
+		//rs.close();
+	}
 	
+ 	
 }
