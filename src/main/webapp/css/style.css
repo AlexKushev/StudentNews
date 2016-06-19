@@ -195,6 +195,14 @@ article p {
     border: 1px solid #ccc;
 }
 
+#articleManager tr:first-child td {
+    border-top: none;
+}
+
+#articleManager tr:last-child td {
+    border-bottom: none;
+}
+
 #articleManager td:first-child {
     border-left: none;
 }
