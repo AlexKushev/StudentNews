@@ -82,9 +82,7 @@ public class UserManager {
 			return Response.status(HttpURLConnection.HTTP_UNAUTHORIZED).build();
 		}
 
-		//User curUser = userDAO.findUserByUserName(user.getUserName());
-		//System.out.println(curUser);
-		//context.setCurrentUser(curUser);
+		context.setCurrentUser(user);
 		return RESPONSE_OK;
 	}
 	
