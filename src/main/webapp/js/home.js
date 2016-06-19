@@ -10,14 +10,13 @@ $(document).ready(function() {
 
         for (var i = 0; i < articleData.length; i++) {
             var articleItem = articleData[i];
-            var date = articleItem.postDate.substring(0, 10);
             if (articleItem.articleType == "TechNews") {
-                $techNews.append('<article><h2 class="articleHeading">' + articleItem.title + '</h2><p class="author">posted on ' + date + '</p><p class="articleContent">' + articleItem.text + '</p></article>');
+                $techNews.append('<article><h2 class="articleHeading">' + articleItem.title + '</h2><p class="author">posted by ' + articleItem.author + '</p><p class="articleContent">' + articleItem.text + '</p></article>');
             }
             else {
-                $universityNews.append('<article><h2 class="articleHeading">' + articleItem.title + '</h2><p class="author">posted on ' + date + '</p><p class="articleContent">' + articleItem.text + '</p></article>');
+                $universityNews.append('<article><h2 class="articleHeading">' + articleItem.title + '</h2><p class="author">posted by ' + articleItem.author + '</p><p class="articleContent">' + articleItem.text + '</p></article>');
             }
-            $articleManager.append('<tr><td>' + articleItem.title + '</td><td>' + date + '</td><td><a href="#" class="btn btn-warning" role="button">Edit</a></td><td><a href="#" class="btn btn-danger" role="button">Delete</a></td>');
+            $articleManager.append('<tr><td>' + articleItem.title + '</td><td><a href="#" class="btn btn-warning" role="button">Edit</a></td><td><a href="#" class="btn btn-danger" role="button">Delete</a></td>');
         }
     });
 
