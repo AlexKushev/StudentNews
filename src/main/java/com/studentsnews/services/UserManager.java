@@ -76,15 +76,15 @@ public class UserManager {
 	@Path("login")
 	@POST
 	@Consumes("application/json")
-	public Response loginUser(User user) {
+	public Response loginUser(User user) throws SQLException {
 		boolean isUserValid = userDAO.validateUserCredentials(user.getUserName(), user.getPassword());
 		if (!isUserValid) {
 			return Response.status(HttpURLConnection.HTTP_UNAUTHORIZED).build();
 		}
 
-		User curUser = userDAO.findUserByUserName(user.getUserName());
-		System.out.println(curUser);
-		context.setCurrentUser(curUser);
+		//User curUser = userDAO.findUserByUserName(user.getUserName());
+		//System.out.println(curUser);
+		//context.setCurrentUser(curUser);
 		return RESPONSE_OK;
 	}
 	

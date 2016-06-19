@@ -1,6 +1,7 @@
 package com.studentsnews.dao;
 
 import java.security.MessageDigest;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
@@ -54,12 +55,15 @@ public class UserDAO {
 		return queryUser(query);
 	}
 
-	public boolean validateUserCredentials(String email, String password) {
-		String txtQuery = "SELECT u FROM User u WHERE u.userName=:userName AND u.password=:password";
-		TypedQuery<User> query = em.createQuery(txtQuery, User.class);
-		query.setParameter("userName", email);
-		query.setParameter("password", getHashedPassword(password));
-		return queryUser(query) != null;
+	public boolean validateUserCredentials(String userName, String password) throws SQLException {
+		String txtQuery = "SELECT * FROM User WHERE user.userName=" + "'" + userName + "'"  +  "AND user.password=" + "'" + password + "'";
+		System.out.println(txtQuery);
+		Statement statement = td.getStatement();
+		ResultSet rs = statement.executeQuery(txtQuery);
+		if (!rs.next() ) {
+		    return false;
+		}
+		return true;
 	}
 
 	private User queryUser(TypedQuery<User> query) {
