@@ -34,11 +34,11 @@ $(document).ready(function() {
         var oArticleData = {
             article: {
                 title: $("#article-title").val(),
+                articleType: $('#category option:selected').text().replace(/ /g,''),
                 text: $("#article-body").val()
             }
         };
 
-        console.log(JSON.stringify(oArticleData));
         $.ajax({
                 url: 'rest/article/add',
                 type: "POST",

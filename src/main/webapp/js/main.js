@@ -51,8 +51,6 @@ $(document).ready(function() {
             }
         };
 
-        console.log(JSON.stringify(oUserData));
-
 
         $.ajax({
             url: 'rest/user/login',
