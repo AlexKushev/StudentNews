@@ -16,7 +16,7 @@ $(document).ready(function() {
             else {
                 $universityNews.append('<article><h2 class="articleHeading">' + articleItem.title + '</h2><p class="author">posted by ' + articleItem.author + '</p><p class="articleContent">' + articleItem.text + '</p></article>');
             }
-            $articleManager.append('<tr><td>' + articleItem.title + '</td><td><a href="#" class="btn btn-warning" role="button">Edit</a></td><td><a href="#" class="btn btn-danger" role="button">Delete</a></td>');
+            $articleManager.append('<tr><td>' + articleItem.title + '</td><td>' + articleItem.articleType + '</td><td><a href="#" class="btn btn-warning" role="button">Edit</a></td><td><a href="#" class="btn btn-danger" role="button">Delete</a></td>');
         }
     });
 

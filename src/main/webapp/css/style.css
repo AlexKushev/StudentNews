@@ -195,6 +195,14 @@ article p {
     border: 1px solid #ccc;
 }
 
+#articleManager td:first-child {
+    border-left: none;
+}
+
+#articleManager td:last-child {
+    border-right: none;
+}
+
 #articleManager tr:nth-child(even) td {
     background: #f6f6f6;
 }
