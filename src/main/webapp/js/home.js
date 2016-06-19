@@ -12,11 +12,10 @@ $(document).ready(function() {
             var articleItem = articleData[i];
             if (articleItem.articleType == "TechNews") {
                 $techNews.append('<article><h2 class="articleHeading">' + articleItem.title + '</h2><p class="author">posted by ' + articleItem.author + '</p><p class="articleContent">' + articleItem.text + '</p></article>');
-            }
-            else {
+            } else {
                 $universityNews.append('<article><h2 class="articleHeading">' + articleItem.title + '</h2><p class="author">posted by ' + articleItem.author + '</p><p class="articleContent">' + articleItem.text + '</p></article>');
             }
-            $articleManager.append('<tr><td>' + articleItem.title + '</td><td>' + articleItem.articleType + '</td><td><a href="#" class="btn btn-warning" role="button">Edit</a></td><td><a href="#" class="btn btn-danger" role="button">Delete</a></td>');
+            $articleManager.append('<tr><td>' + articleItem.title + '</td><td>' + articleItem.articleType + '</td><td><a href="#" class="btn btn-warning" role="button">Edit</a></td><td><a href="#" id="deleteArticle" class="btn btn-danger" role="button" data-id="' + articleItem.id + '">Delete</a></td>');
         }
     });
 
@@ -34,7 +33,7 @@ $(document).ready(function() {
         var oArticleData = {
             article: {
                 title: $("#article-title").val(),
-                articleType: $('#category option:selected').text().replace(/ /g,''),
+                articleType: $('#category option:selected').text().replace(/ /g, ''),
                 text: $("#article-body").val()
             }
         };
@@ -66,5 +65,20 @@ $(document).ready(function() {
                 }
             }
         });
+    });
+});
+
+$(document).ready(function() {
+    $('body').on('click', '#deleteArticle', function() {
+        var deleteID = $(this).attr('data-id');
+        $.ajax({
+            type: "DELETE",
+            url: "rest/article/delete?id=" + deleteID,
+            async: true,
+            complete: function() {
+                alert("Deleted successfully!");
+            }
+        });
+        location.reload();
     });
 });
