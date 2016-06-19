@@ -75,10 +75,14 @@ public class ArticleDAO {
 	 }
 
 
-	public void deleteArticleById(int articleId) throws SQLException {
+	public boolean deleteArticleById(int articleId) throws SQLException {
 		String query = "DELETE FROM article WHERE article.id = " + "'" + articleId + "'";
 		Statement statement = td.getStatement();
-		statement.executeUpdate(query);
+		int executeUpdate = statement.executeUpdate(query);
+		if(executeUpdate == 1) {
+			return true;
+		}
+		return false;
 		//ResultSet rs = statement.executeQuery(query);
 		//rs.close();
 	}

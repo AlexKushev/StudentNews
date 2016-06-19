@@ -71,9 +71,11 @@ public class ArticleManager {
 	@Consumes(MediaType.TEXT_PLAIN)
 	public Response deleteArticle(@QueryParam(value = "id") String id) throws NumberFormatException, SQLException {
 		
-		articleDAO.deleteArticleById(Integer.parseInt(id));
+		if(articleDAO.deleteArticleById(Integer.parseInt(id))) {
+			return RESPONSE_OK;
+		}
 		
-		return null;
+		return Response.status(404).build();
 	}
 
 }
