@@ -10,12 +10,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Entity implementation class for Entity: User
  *
  */
+@Table(name = "user")
 @NamedQueries({ @NamedQuery(name = "user.findById", query = "SELECT u FROM User u WHERE u.id = :id"),
 	@NamedQuery(name = "user.getAllUsers", query = "SELECT u FROM User u"),
 	@NamedQuery(name = "user.findUserByUserName", query = "SELECT u FROM User u WHERE u.userName = :userName")})
 @Entity
 @XmlRootElement
-
 public class User implements Serializable {
 
 	@Transient
@@ -49,6 +49,7 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
+	@Column
 	private String firstName;
 
 	private String lastName;
@@ -57,7 +58,7 @@ public class User implements Serializable {
 
 	private String password;
 
-	@OneToMany(mappedBy = "author")
+	@OneToMany
 	private List<Article> articles;
 
 	public Integer getId() {

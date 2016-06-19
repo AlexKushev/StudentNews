@@ -1,5 +1,6 @@
 package com.studentsnews.utils;
 
+import java.sql.SQLException;
 import java.util.Date;
 
 import javax.ejb.EJB;
@@ -22,8 +23,8 @@ public class DatabaseUtils {
 	private static User[] USERS = { new User("Alex", "Kushev", "alle3x", "123"),
 			new User("Sevdalin", "zhelyzkov", "sevito", "1235") };
 
-	private static Article[] ARTICLES = { new Article("Title1", text1, new Date(), ArticleType.TechNews),
-			new Article("Title2", text2, new Date(), ArticleType.UniversityNews) };
+	private static Article[] ARTICLES = { new Article("Title1", text1, new Date(), ArticleType.TechNews, "Pesho"),
+			new Article("Title2", text2, new Date(), ArticleType.UniversityNews, "Gosho") };
 
 	@PersistenceContext
 	private EntityManager em;
@@ -34,24 +35,29 @@ public class DatabaseUtils {
 	@EJB
 	private ArticleDAO articleDAO;
 
-	public void addTestDataToDB() {
+	public void addTestDataToDB() throws SQLException {
 		deleteData();
 		addTestUsers();
 		addTestArticles();
 	}
 
 	private void deleteData() {
-		em.createQuery("DELETE FROM User").executeUpdate();
-		em.createQuery("DELETE FROM Article").executeUpdate();
+		//em.createQuery("DELETE FROM User").executeUpdate();
+		//em.createQuery("DELETE FROM Article").executeUpdate();
 	}
 
 	private void addTestUsers() {
 		for (User user : USERS) {
-			userDAO.addUser(user);
+			try {
+				userDAO.addUser(user);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
-	private void addTestArticles() {
+	private void addTestArticles() throws SQLException {
 		for (Article article : ARTICLES) {
 			articleDAO.addArticle(article);
 		}

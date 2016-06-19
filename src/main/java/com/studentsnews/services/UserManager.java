@@ -1,6 +1,10 @@
 package com.studentsnews.services;
 
 import java.net.HttpURLConnection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -27,11 +31,26 @@ public class UserManager {
 
 	@Inject
 	private UserContext context;
+	
+	@Inject
+	private TestDataInserter td;
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<User> getAllUsers() {
-		return userDAO.getAllUsers();
+	public List<User> getAllUsers() throws SQLException {
+		List<User> currentUsers = new LinkedList<User>();
+		Statement statement = td.getStatement();
+		ResultSet rs = statement.executeQuery("Select * from user");
+		 while(rs.next()){
+			 User user = new User();
+			 user.setFirstName(rs.getString("firstName"));
+			 user.setLastName(rs.getString("lastName"));
+			 user.setUserName(rs.getString("userName"));
+			 user.setPassword(rs.getString("password"));
+	        
+			 currentUsers.add(user);
+	      }
+		 return currentUsers;
 	}
 
 	@Path("register")
@@ -40,9 +59,14 @@ public class UserManager {
 	public Response registerUser(User newUser) {
 		if (newUser.getFirstName().length() > 0 && newUser.getFirstName().length() < 20
 				&& newUser.getLastName().length() > 0 && newUser.getLastName().length() < 20) {
-			if (newUser.getPassword().length() >= 8) {
-				if (userDAO.addUser(newUser)) {
-					return RESPONSE_OK;
+			if (newUser.getPassword().length() >= 3) {
+				try {
+					if (userDAO.addUser(newUser)) {
+						return RESPONSE_OK;
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 		}

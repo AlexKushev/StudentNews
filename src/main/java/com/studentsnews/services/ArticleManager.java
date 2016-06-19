@@ -1,6 +1,8 @@
 package com.studentsnews.services;
 
+import java.sql.SQLException;
 import java.util.Collection;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -26,14 +28,31 @@ public class ArticleManager {
 	    
 	    @GET
 	    @Produces(MediaType.APPLICATION_JSON)
-	    public Collection<Article> getAllArticles() {
-	    	return articleDAO.getAllArticles();
+	    public List<Article> getAllArticles() {
+	    	List<Article> currentArticles = null;
+	    	try {
+				currentArticles = articleDAO.getAllArticles();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    	return currentArticles;
 	    }
 	    
+	    @Path("add")
 	    @POST
 	    @Consumes(MediaType.APPLICATION_JSON)
-	    public void addArticle(Article article) {
-	    	articleDAO.addArticle(article);
+	    public Response addArticle(Article article) {
+	    	try {
+				if(articleDAO.addArticle(article)) {
+					return RESPONSE_OK;
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    	
+	    	return Response.status(401).build();
 	    }
 	    
 }

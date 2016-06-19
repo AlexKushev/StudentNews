@@ -12,9 +12,11 @@ import com.studentsnews.enums.ArticleType;
  * Entity implementation class for Entity: Article
  *
  */
-@NamedQueries({ @NamedQuery(name="article.getAllArticles", query="SELECT a FROM Article a")})
+@NamedQueries({ @NamedQuery(name="article.getAllArticles", query="SELECT a FROM Article a"),
+	@NamedQuery(name="article.getByTitle", query = "SELECT a FROM Article a WHERE a.title =:title")})
 @Entity
 @XmlRootElement
+@Table(name = "article")
 public class Article implements Serializable {
 
 	
@@ -24,12 +26,13 @@ public class Article implements Serializable {
 		super();
 	}
 	
-	public Article(String title, String text, Date postDate, ArticleType articleType) {
+	public Article(String title, String text, Date postDate, ArticleType articleType, String author) {
 		super();
 		this.title = title;
 		this.text = text;
 		this.postDate = postDate;
 		this.articleType = articleType;
+		this.author = author;
 	}
 
 	@Id
@@ -40,9 +43,7 @@ public class Article implements Serializable {
 	
 	private String text;
 	
-	@ManyToOne(cascade = {CascadeType.PERSIST})
-	@JoinColumn(name = "user_fk")
-	private User author;
+	private String author;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date postDate;
@@ -74,20 +75,12 @@ public class Article implements Serializable {
 		this.text = text;
 	}
 
-	public User getAuthor() {
+	public String getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(User author) {
+	public void setAuthor(String author) {
 		this.author = author;
-	}
-
-	public Date getPostDate() {
-		return postDate;
-	}
-
-	public void setPostDate(Date postDate) {
-		this.postDate = postDate;
 	}
 
 	public ArticleType getArticleType() {
@@ -101,7 +94,7 @@ public class Article implements Serializable {
 	@Override
 	public String toString() {
 		return "Article [id=" + id + ", title=" + title + ", text=" + text + ", author=" + author + ", postDate="
-				+ postDate + ", articleType=" + articleType + "]";
+				 + ", articleType=" + articleType + "]";
 	}
 
 }
