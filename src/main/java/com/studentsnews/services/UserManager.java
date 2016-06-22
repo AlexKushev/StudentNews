@@ -66,7 +66,6 @@ public class UserManager {
 						return RESPONSE_OK;
 					}
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

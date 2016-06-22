@@ -29,16 +29,15 @@ public class UserDAO {
 		String userName = user.getUserName();
 		String firstName = user.getFirstName();
 		String lastName = user.getLastName();
+		String password = user.getPassword();
 		boolean isOk = false;
+		String txtQuery = "SELECT * FROM User WHERE user.userName=" + "'" + userName + "'"  +  "AND user.password=" + "'" + password + "'";
 		Statement st = td.getStatement();
-		/*try {
-		} catch (NoResultException ex) {*/
-			//user.setPassword(getHashedPassword(user.getPassword()));
-			String password = user.getPassword();
+		ResultSet rs = st.executeQuery(txtQuery);
+		if(!rs.next()){
 			st.executeUpdate("insert into user(firstName, lastName, userName, password) values(" + "'" + firstName + "','" + lastName + "','" + userName + "','" + password + "')");
 			isOk = true;
-		/*}*/
-
+		}
 		return isOk;
 	}
 
