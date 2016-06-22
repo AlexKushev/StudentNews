@@ -1,8 +1,6 @@
 package com.studentsnews.services;
 
 import java.sql.SQLException;
-import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -36,10 +34,22 @@ public class ArticleManager {
 		try {
 			currentArticles = articleDAO.getAllArticles();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return currentArticles;
+	}
+	
+	@Path("unpublish")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Article> getAllUnpublishedArticles() {
+		List<Article> currentUnpublishedArticles = null;
+		try {
+			currentUnpublishedArticles = articleDAO.getAllUnpublishedArticles();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return currentUnpublishedArticles;
 	}
 
 	@Path("add")
@@ -51,7 +61,6 @@ public class ArticleManager {
 				return RESPONSE_OK;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

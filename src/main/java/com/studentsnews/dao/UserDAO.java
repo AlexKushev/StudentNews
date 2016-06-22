@@ -1,6 +1,5 @@
 package com.studentsnews.dao;
 
-import java.security.MessageDigest;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -9,7 +8,6 @@ import java.util.List;
 import javax.ejb.Singleton;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
@@ -73,21 +71,4 @@ public class UserDAO {
 		return true;
 	}
 
-	private User queryUser(TypedQuery<User> query) {
-		try {
-			return query.getSingleResult();
-		} catch (Exception e) {
-			return null;
-		}
-	}
-
-	private String getHashedPassword(String password) {
-		try {
-			MessageDigest mda = MessageDigest.getInstance("SHA-512");
-			password = new String(mda.digest(password.getBytes()));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return password;
-	}
 }

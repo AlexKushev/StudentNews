@@ -12,20 +12,19 @@ import com.studentsnews.enums.ArticleType;
  * Entity implementation class for Entity: Article
  *
  */
-@NamedQueries({ @NamedQuery(name="article.getAllArticles", query="SELECT a FROM Article a"),
-	@NamedQuery(name="article.getByTitle", query = "SELECT a FROM Article a WHERE a.title =:title")})
+@NamedQueries({ @NamedQuery(name = "article.getAllArticles", query = "SELECT a FROM Article a"),
+		@NamedQuery(name = "article.getByTitle", query = "SELECT a FROM Article a WHERE a.title =:title") })
 @Entity
 @XmlRootElement
 @Table(name = "article")
 public class Article implements Serializable {
 
-	
 	private static final long serialVersionUID = 1L;
 
 	public Article() {
 		super();
 	}
-	
+
 	public Article(String title, String text, Date postDate, ArticleType articleType, String author) {
 		super();
 		this.title = title;
@@ -38,18 +37,20 @@ public class Article implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	
+
 	private String title;
-	
+
 	private String text;
-	
+
 	private String author;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date postDate;
-	
+
 	@Enumerated(EnumType.STRING)
 	private ArticleType articleType;
+
+	private int isPublished;
 
 	public Integer getId() {
 		return id;
@@ -91,10 +92,18 @@ public class Article implements Serializable {
 		this.articleType = articleType;
 	}
 
+	public int getIsPublished() {
+		return isPublished;
+	}
+
+	public void setIsPublished(int isPublished) {
+		this.isPublished = isPublished;
+	}
+
 	@Override
 	public String toString() {
 		return "Article [id=" + id + ", title=" + title + ", text=" + text + ", author=" + author + ", postDate="
-				 + ", articleType=" + articleType + "]";
+				+ postDate + ", articleType=" + articleType + ", isPublished=" + isPublished + "]";
 	}
 
 }
