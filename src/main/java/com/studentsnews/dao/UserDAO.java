@@ -48,16 +48,23 @@ public class UserDAO {
 		return query.getResultList();
 	}
 	
-	public User findUserByUserName(String userName) {
-		String txtQuery = "SELECT u FROM User u WHERE u.userName = :userName";
-		TypedQuery<User> query = em.createQuery(txtQuery, User.class);
-		query.setParameter("userName", userName);
-		return queryUser(query);
+	public User findUserByUserName(String userName, String password) throws SQLException {
+		String txtQuery = "SELECT * FROM User WHERE user.userName=" + "'" + userName + "'"  +  "AND user.password=" + "'" + password + "'";
+		Statement statement = td.getStatement();
+		ResultSet rs = statement.executeQuery(txtQuery);
+		User user = new User();
+		while(rs.next()) {
+			user.setId(rs.getInt("id"));
+			user.setFirstName(rs.getString("firstName"));
+			user.setLastName(rs.getString("lastName"));
+			user.setUserName(rs.getString("userName"));
+			user.setPassword(rs.getString("password"));
+		}
+		return user;
 	}
-
+	
 	public boolean validateUserCredentials(String userName, String password) throws SQLException {
 		String txtQuery = "SELECT * FROM User WHERE user.userName=" + "'" + userName + "'"  +  "AND user.password=" + "'" + password + "'";
-		System.out.println(txtQuery);
 		Statement statement = td.getStatement();
 		ResultSet rs = statement.executeQuery(txtQuery);
 		if (!rs.next() ) {

@@ -47,7 +47,8 @@ public class UserManager {
 			 user.setLastName(rs.getString("lastName"));
 			 user.setUserName(rs.getString("userName"));
 			 user.setPassword(rs.getString("password"));
-	        
+			 user.setId(rs.getInt("id"));
+			 
 			 currentUsers.add(user);
 	      }
 		 return currentUsers;
@@ -81,8 +82,8 @@ public class UserManager {
 		if (!isUserValid) {
 			return Response.status(HttpURLConnection.HTTP_UNAUTHORIZED).build();
 		}
-
-		context.setCurrentUser(user);
+		User user1 = userDAO.findUserByUserName(user.getUserName(), user.getPassword());
+		context.setCurrentUser(user1);
 		return RESPONSE_OK;
 	}
 	
