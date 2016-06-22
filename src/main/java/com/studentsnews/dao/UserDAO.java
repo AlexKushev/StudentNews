@@ -35,7 +35,7 @@ public class UserDAO {
 		Statement st = td.getStatement();
 		ResultSet rs = st.executeQuery(txtQuery);
 		if(!rs.next()){
-			st.executeUpdate("insert into user(firstName, lastName, userName, password) values(" + "'" + firstName + "','" + lastName + "','" + userName + "','" + password + "')");
+			st.executeUpdate("insert into user(firstName, lastName, userName, password, isAdmin) values(" + "'" + firstName + "','" + lastName + "','" + userName + "','" + password + "','" + 0 + "')");
 			isOk = true;
 		}
 		return isOk;
@@ -58,6 +58,7 @@ public class UserDAO {
 			user.setLastName(rs.getString("lastName"));
 			user.setUserName(rs.getString("userName"));
 			user.setPassword(rs.getString("password"));
+			user.setAdmin(rs.getInt("isAdmin"));
 		}
 		return user;
 	}

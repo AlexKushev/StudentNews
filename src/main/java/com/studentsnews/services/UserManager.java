@@ -48,6 +48,7 @@ public class UserManager {
 			 user.setUserName(rs.getString("userName"));
 			 user.setPassword(rs.getString("password"));
 			 user.setId(rs.getInt("id"));
+			 user.setAdmin(rs.getInt("isAdmin"));
 			 
 			 currentUsers.add(user);
 	      }

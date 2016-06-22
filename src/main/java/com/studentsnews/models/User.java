@@ -57,6 +57,8 @@ public class User implements Serializable {
 	private String userName;
 
 	private String password;
+	
+	private int isAdmin;
 
 	@OneToMany
 	private List<Article> articles;
@@ -100,6 +102,15 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public int isAdmin() {
+		return isAdmin;
+	}
+
+
+	public void setAdmin(int isAdmin) {
+		this.isAdmin = isAdmin;
+	}
 
 	public List<Article> getArticles() {
 		return articles;
@@ -109,10 +120,11 @@ public class User implements Serializable {
 		this.articles = articles;
 	}
 
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", userName=" + userName
-				+ ", password=" + password + ", articles="  + "]";
+				+ ", password=" + password + ", isAdmin=" + isAdmin + ", articles=" + articles + "]";
 	}
 
 }
