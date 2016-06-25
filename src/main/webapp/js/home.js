@@ -7,7 +7,6 @@ $(document).ready(function() {
         userData = data.user;
         if (userData.userName == null) {
             window.location.href="index.html";
-            console.log('penis');
         }
         if (userData.admin === 0) {
             $("[data-tab=tab-3]").remove();
@@ -36,7 +35,7 @@ $(document).ready(function() {
                 data: JSON.stringify(oArticleData)
             })
             .success(function() {
-                alert("Added successfully!");
+                alert("Added successfully! Now wait for approval!");
             })
             .fail(function() {
                 alert("Failed to add article!");
@@ -58,18 +57,33 @@ $(document).ready(function() {
         });
     });
 
+    $('body').on('click', '#approveArticle', function() {
+        var approveID = $(this).attr('data-id');
+        $.ajax({
+            type: "PUT",
+            url: "rest/article/update?id=" + approveID
+        })
+        .success(function() {
+            alert("Added successfully!");
+            location.reload();
+        })
+        .fail(function() {
+            alert("Failed to add article!");
+        });
+    });
+
     $('body').on('click', '#deleteArticle', function() {
         var deleteID = $(this).attr('data-id');
         $.ajax({
             type: "DELETE",
             url: "rest/article/delete?id=" + deleteID
         })
-        .fail(function() {
-            alert("Article not removed!");
-        })
-        .always(function() {
-            alert("Article removed!");
+        .success(function() {
+            alert("Removed successfully!");
             location.reload();
+        })
+        .fail(function() {
+            alert("Failed to remove article!");
         });
     });
 
