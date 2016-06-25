@@ -59,6 +59,7 @@ public class ArticleDAO {
 			article.setText(rs.getString("text"));
 			article.setTitle(rs.getString("title"));
 			article.setId(Integer.parseInt(rs.getString("id")));
+			article.setIsPublished(Integer.parseInt(rs.getString("isPublished")));
 
 			currentArticles.add(article);
 		}
