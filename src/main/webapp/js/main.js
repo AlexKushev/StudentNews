@@ -83,7 +83,7 @@ $(document).ready(function() {
             $LastName = $('#register-lastName'),
             $Email = $('#register-email'),
             $ReEmail = $('#register-confirm-email'),
-            $Password = $('#register-password');
+            $Password = $('#register-password'),
             $RePassword = $('#register-password-re');
 
         if ($Password.val() !== $RePassword.val()) {

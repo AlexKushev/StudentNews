@@ -25,6 +25,10 @@ $(document).ready(function() {
             }
         };
 
+        if (!validate()) {
+            return;
+        }
+
         $.ajax({
                 url: 'rest/article/add',
                 type: "POST",
@@ -53,9 +57,6 @@ $(document).ready(function() {
             }
         });
     });
-});
-
-$(document).ready(function() {
 
     $('body').on('click', '#deleteArticle', function() {
         var deleteID = $(this).attr('data-id');
@@ -71,4 +72,16 @@ $(document).ready(function() {
             location.reload();
         });
     });
+
+    function validate() {
+        var $articleTitle = $('#article-title').val(),
+            $articleBody = $('#article-body').val();
+
+        if ($articleTitle === '' || $articleBody === '') {
+            alert('Incorect data!');
+            return false;
+        }
+
+        return true;
+    }
 });
