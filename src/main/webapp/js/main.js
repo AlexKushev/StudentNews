@@ -84,6 +84,12 @@ $(document).ready(function() {
             $Email = $('#register-email'),
             $ReEmail = $('#register-confirm-email'),
             $Password = $('#register-password');
+            $RePassword = $('#register-password-re');
+
+        if ($Password.val() !== $RePassword.val()) {
+            alert('Passwords do not match!');
+            return false;
+        }
 
         // function validateEmail(email) {
         //     var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
