@@ -1,6 +1,7 @@
 $(document).ready(function() {
     var $LoginButton = $("#login-button"),
         $RegisterButton = $("#register-button");
+        
     $LoginButton.on("click", function() {
         callForLogin();
     });

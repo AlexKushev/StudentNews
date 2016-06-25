@@ -38,8 +38,12 @@ $(document).ready(function() {
     });
 
     $('nav a').click(function() {
-        var tab_id = $(this).attr('data-tab');
+        tabSwitch(this);
+    });
+
+    function tabSwitch(element) {
+        var tab_id = $(element).attr('data-tab');
         $('.tab-content').removeClass('current');
         $("." + tab_id).addClass('current');
-    });
+    }
 });
