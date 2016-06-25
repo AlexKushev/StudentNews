@@ -19,6 +19,13 @@ $(document).ready(function() {
         }
     });
 
+
+    $.getJSON("rest/user/current", function(data) {
+        if (data.isAdmin === 0) {
+            $("[data-tab=tab-3]").remove();
+        } 
+    });
+
     $('nav a').click(function() {
         var tab_id = $(this).attr('data-tab');
 
@@ -44,10 +51,10 @@ $(document).ready(function() {
                 contentType: "application/json",
                 data: JSON.stringify(oArticleData)
             })
-            .success(function(data) {
+            .success(function() {
                 alert("Added successfully!");
             })
-            .fail(function(data) {
+            .fail(function() {
                 alert("Failed to add article!");
             })
             .always(function() {

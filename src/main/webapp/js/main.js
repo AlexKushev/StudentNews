@@ -31,10 +31,10 @@ $(document).ready(function() {
                 contentType: "application/json",
                 data: JSON.stringify(oRegisterData)
             })
-            .success(function(data) {
+            .success(function() {
                 alert("Register success! You can now login in the system!");
             })
-            .fail(function(data) {
+            .fail(function() {
                 alert("Invalid data or user with this data already exists!");
             })
             .always(function() {

@@ -92,7 +92,7 @@ nav {
     text-align: center;
 }
 
-nav a {
+nav a.navBtn {
     display: inline-block;
     background: #165F78;
     padding: 8px 18px;
@@ -103,32 +103,32 @@ nav a {
     margin-bottom: 15px;
 }
 
-nav a:hover {
+nav a.navBtn:hover {
     background: #0E4659;
     color: #fff;
 }
 
-nav a:first-child {
+nav a.navBtn--yellow {
     background: #736308;
 }
 
-nav a:first-child:hover {
+nav a.navBtn--yellow:hover {
     background: #524707;
 }
 
-nav a:nth-child(2) {
+nav a.navBtn--orange {
     background: #a63e00;
 }
 
-nav a:nth-child(2):hover {
+nav a.navBtn--orange:hover {
     background: #722b00;
 }
 
-nav a:nth-child(4) {
+nav a.navBtn--green {
     background: #2BA62B;
 }
 
-nav a:nth-child(4):hover {
+nav a.navBtn--green:hover {
     background: #167316;
 }
 
@@ -232,7 +232,7 @@ article p {
     width: 10%;
 }
 
-#articleManager tr td:nth-child(4) {
+#articleManager tr td:.navBtn--green {
     width: 12%;
 }
 
