@@ -110,8 +110,8 @@ public class ArticleDAO {
 		return currentPublishArticles;
 	}
 	
-	public boolean publishArticle(String articledId) throws SQLException {
-		String txtQuery = "Update article set article.isPublished = 1 where article.articledId = " + "'" + articledId + "'";
+	public boolean publishArticle(String articleId) throws SQLException {
+		String txtQuery = "Update article set article.isPublished = 1 where article.id = " + "'" + articleId + "'";
 		Statement statement = td.getStatement();
 		int executedUpdate = statement.executeUpdate(txtQuery);
 		if(executedUpdate == 1) {
