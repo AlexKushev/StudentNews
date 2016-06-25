@@ -3,7 +3,8 @@ $(document).ready(function() {
     var $techNews = $("#techNews"),
         $universityNews = $("#universityNews"),
         $articleManager = $("#articleManager"),
-        articleData = null;
+        articleData = null,
+        userData = null;
 
     $.getJSON("rest/article", function(data) {
         articleData = data.article;
@@ -21,7 +22,8 @@ $(document).ready(function() {
 
 
     $.getJSON("rest/user/current", function(data) {
-        if (data.isAdmin === 0) {
+        userData = data.user;
+        if (userData.admin === 0) {
             $("[data-tab=tab-3]").remove();
         } 
     });
