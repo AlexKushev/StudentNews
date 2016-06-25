@@ -9,6 +9,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -63,6 +64,16 @@ public class ArticleManager {
 			e.printStackTrace();
 		}
 		return currentPublishArticles;
+	}
+	
+	@Path("update")
+	@PUT
+	@Consumes(MediaType.TEXT_PLAIN)
+	public Response publishArticle(@QueryParam(value = "id") String id) throws SQLException {
+		if(articleDAO.publishArticle(id)) {
+			return RESPONSE_OK;
+		}
+		return Response.status(404).build();
 	}
 
 	@Path("add")

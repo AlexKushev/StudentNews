@@ -108,6 +108,16 @@ public class ArticleDAO {
 		
 		return currentPublishArticles;
 	}
+	
+	public boolean publishArticle(String articledId) throws SQLException {
+		String txtQuery = "Update article set article.isPublished = 1 where article.articledId = " + "'" + articledId + "'";
+		Statement statement = td.getStatement();
+		int executedUpdate = statement.executeUpdate(txtQuery);
+		if(executedUpdate == 1) {
+			return true;
+		} 
+		return false;
+	}
 
 	public boolean deleteArticleById(int articleId) throws SQLException {
 		String query = "DELETE FROM article WHERE article.id = " + "'" + articleId + "'";
