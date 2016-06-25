@@ -14,6 +14,9 @@ public class UserContext implements Serializable {
 	private User currentUser;
 	
 	public User getCurrentUser() {
+		if(currentUser == null) {
+			return new User();
+		}
 		return currentUser;
 	}
 	

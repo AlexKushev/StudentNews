@@ -90,12 +90,12 @@ public class UserManager {
 	@Path("current")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getUser() {
+	public User getUser() {
 		if (context.getCurrentUser() == null) {
 			System.out.println(context.getCurrentUser().getFirstName());
-			return "null";
+			return null;
 		}
-		return context.getCurrentUser().toString();
+		return context.getCurrentUser();
 	}
 	
 	@Path("logout")
