@@ -8,9 +8,6 @@ $(document).ready(function() {
         if (userData.userName == null) {
             window.location.href="index.html";
         }
-        if (userData.admin === 0) {
-            $("[data-tab=tab-3]").remove();
-        } 
     });
 
 

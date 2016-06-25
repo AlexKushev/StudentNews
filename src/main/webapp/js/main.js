@@ -65,7 +65,7 @@ $(document).ready(function() {
 
                     $.ajax({
                         type: "GET",
-                        complete: function(data) {
+                        complete: function() {
                             window.location.replace("home.html");
                         }
                     });
