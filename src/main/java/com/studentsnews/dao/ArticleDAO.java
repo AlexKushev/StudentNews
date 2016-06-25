@@ -78,6 +78,7 @@ public class ArticleDAO {
 			article.setText(rs.getString("text"));
 			article.setTitle(rs.getString("title"));
 			article.setId(Integer.parseInt(rs.getString("id")));
+			article.setIsPublished(Integer.parseInt(rs.getString("isPublished")));
 			
 			currentUnpublishedArticles.add(article);
 
@@ -85,6 +86,27 @@ public class ArticleDAO {
 
 		return currentUnpublishedArticles;
 		
+	}
+	
+	public List<Article> getAllPublishArticles() throws SQLException {
+		List<Article> currentPublishArticles = new LinkedList<Article>();
+		Statement statement = td.getStatement();
+		String txtQuery = "Select * from article where article.isPublished = 1";
+		ResultSet rs = statement.executeQuery(txtQuery);
+		while(rs.next()) {
+			Article article = new Article();
+			String articleType = rs.getString("articleType");
+			article.setArticleType(ArticleType.valueOf(articleType));
+			article.setAuthor(rs.getString("author"));
+			article.setText(rs.getString("text"));
+			article.setTitle(rs.getString("title"));
+			article.setId(Integer.parseInt(rs.getString("id")));
+			article.setIsPublished(Integer.parseInt(rs.getString("isPublished")));
+			
+			currentPublishArticles.add(article);
+		}
+		
+		return currentPublishArticles;
 	}
 
 	public boolean deleteArticleById(int articleId) throws SQLException {

@@ -51,6 +51,19 @@ public class ArticleManager {
 		}
 		return currentUnpublishedArticles;
 	}
+	
+	@Path("publish")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Article> getAllPublishArticles() {
+		List<Article> currentPublishArticles = null;
+		try {
+			currentPublishArticles = articleDAO.getAllPublishArticles();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return currentPublishArticles;
+	}
 
 	@Path("add")
 	@POST
