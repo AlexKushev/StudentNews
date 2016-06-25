@@ -3,7 +3,8 @@ $(document).ready(function() {
     var $techNews = $("#techNews"),
         $universityNews = $("#universityNews"),
         $articleManager = $("#articleManager"),
-        userData = null;
+        userData = null,
+        articleExist = false;
 
     $.getJSON("rest/user/current", function(data) {
         userData = data.user;
@@ -24,10 +25,15 @@ $(document).ready(function() {
 
             } else {
                 if (articleItem.author == userData.userName) {
+                    articleExist = true;
                     $articleManager.append('<tr><td>' + articleItem.title + '</td><td>' + articleItem.articleType + '</td><td><a href="javascript:;" id="deleteArticle" class="btn btn-danger" role="button" data-id="' + articleItem.id + '">Delete</a></td>');
                 }
             }
         }
+        if (!articleExist) {
+            $articleManager.append('<tr><td>No articles to show.</td></tr>');
+        }
+
     });
 
     $('nav a').click(function() {
