@@ -6,7 +6,7 @@ $(document).ready(function() {
     $.getJSON("rest/user/current", function(data) {
         userData = data.user;
         if (userData.userName == null) {
-            window.location.href="index.html";
+            window.location.href = "index.html";
         }
     });
 
@@ -33,12 +33,18 @@ $(document).ready(function() {
             })
             .success(function() {
                 alert("Added successfully! Now wait for approval!");
+                window.location = "home.html";
             })
             .fail(function() {
                 alert("Failed to add article!");
             })
             .always(function() {
-                $("#add-form").submit();
+                $("#add-form").submit(function() {
+                    var form = this;
+                    setTimeout(function() {
+                        $(':submit', form).attr('disabled', true);
+                    }, 50);
+                });
             });
     });
 
@@ -57,31 +63,31 @@ $(document).ready(function() {
     $('body').on('click', '#approveArticle', function() {
         var approveID = $(this).attr('data-id');
         $.ajax({
-            type: "PUT",
-            url: "rest/article/update?id=" + approveID
-        })
-        .success(function() {
-            alert("Added successfully!");
-            location.reload();
-        })
-        .fail(function() {
-            alert("Failed to add article!");
-        });
+                type: "PUT",
+                url: "rest/article/update?id=" + approveID
+            })
+            .success(function() {
+                alert("Added successfully!");
+                location.reload();
+            })
+            .fail(function() {
+                alert("Failed to add article!");
+            });
     });
 
     $('body').on('click', '#deleteArticle', function() {
         var deleteID = $(this).attr('data-id');
         $.ajax({
-            type: "DELETE",
-            url: "rest/article/delete?id=" + deleteID
-        })
-        .success(function() {
-            alert("Removed successfully!");
-            location.reload();
-        })
-        .fail(function() {
-            alert("Failed to remove article!");
-        });
+                type: "DELETE",
+                url: "rest/article/delete?id=" + deleteID
+            })
+            .success(function() {
+                alert("Removed successfully!");
+                location.reload();
+            })
+            .fail(function() {
+                alert("Failed to remove article!");
+            });
     });
 
     function validate() {

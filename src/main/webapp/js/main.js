@@ -33,12 +33,18 @@ $(document).ready(function() {
             })
             .success(function() {
                 alert("Register success! You can now login in the system!");
+                window.location = "index.html";
             })
             .fail(function() {
                 alert("Invalid data or user with this data already exists!");
             })
             .always(function() {
-                $("#register-form").submit();
+                $("#register-form").submit(function() {
+                    var form = this;
+                    setTimeout(function() {
+                        $(':submit', form).attr('disabled', true);
+                    }, 50);
+                });
             });
     });
 
