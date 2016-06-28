@@ -1,8 +1,7 @@
 $(document).ready(function() {
 
     var articleData = null,
-        userData = null,
-        idValue = null;
+        userData = null;
 
     $.getJSON("rest/user/current", function(data) {
         userData = data.user;
@@ -78,7 +77,6 @@ $(document).ready(function() {
 
     $('body').on('click', '#deleteArticle', function() {
         var deleteID = $(this).attr('data-id');
-        idValue = $('.current').attr('id');
         $.ajax({
                 type: "DELETE",
                 url: "rest/article/delete?id=" + deleteID

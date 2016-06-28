@@ -1,19 +1,19 @@
 $(document).ready(function() {
     var $LoginButton = $("#login-button"),
         $RegisterButton = $("#register-button");
-        
+
     $LoginButton.on("click", function() {
-        callForLogin();
+        login();
     });
 
     $('#login-password').keydown(function(e) {
         if (e.keyCode == 13) {
-            callForLogin();
+            login();
         }
     });
 
     $RegisterButton.click(function() {
-        var oRegisterData = {
+        var registerData = {
             user: {
                 firstName: $("#register-firstName").val(),
                 lastName: $("#register-lastName").val(),
@@ -22,6 +22,7 @@ $(document).ready(function() {
             }
         };
 
+        // Validates user input
         if (!validate()) {
             return;
         }
@@ -30,7 +31,7 @@ $(document).ready(function() {
                 url: 'rest/user/register',
                 type: "POST",
                 contentType: "application/json",
-                data: JSON.stringify(oRegisterData)
+                data: JSON.stringify(registerData)
             })
             .success(function() {
                 alert("Register success! You can now login in the system!");
@@ -49,21 +50,19 @@ $(document).ready(function() {
             });
     });
 
-    function callForLogin() {
-
-        var oUserData = {
+    function login() {
+        var userData = {
             user: {
                 userName: $("#login-userName").val(),
                 password: $("#login-password").val()
             }
         };
 
-
         $.ajax({
             url: 'rest/user/login',
             type: "POST",
             contentType: "application/json",
-            data: JSON.stringify(oUserData),
+            data: JSON.stringify(userData),
             statusCode: {
                 401: function() {
                     alert("Wrong username or password!");
@@ -81,32 +80,30 @@ $(document).ready(function() {
         });
     }
 
-    function DO_NOT_EVER_WRITE_SUCH_CODE(string, position) {
-        return string.responseText.split(',')[position].split(':')[1].slice(1, (string.responseText.split(',')[position].split(':')[1].length));
-    }
-
     function validate() {
         var $FirstName = $('#register-firstName'),
             $LastName = $('#register-lastName'),
-            $Email = $('#register-email'),
-            $ReEmail = $('#register-confirm-email'),
+            $userName = $('#register-userName'),
             $Password = $('#register-password'),
             $RePassword = $('#register-password-re');
+
+        if ($FirstName.val().length < 2 || $LastName.val().length < 2 || $userName.val().length < 2) {
+            alert('Invalid data! First Name, Last Name and Username must consist of at least 2 symbols!');
+            return false;
+        } else if ($FirstName.val().length > 15 || $LastName.val().length > 15 || $userName.val().length > 15) {
+            alert('Invalid data! First Name, Last Name and Username must consist of no more than 15 symbols!');
+        }
+
+        if ($Password.val().length < 5 || $Password.val().length > 15) {
+            alert('Password length must have more than 5 and less than 15 symbols!');
+            return false;
+        }
 
         if ($Password.val() !== $RePassword.val()) {
             alert('Passwords do not match!');
             return false;
         }
 
-        // function validateEmail(email) {
-        //     var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-        //     return re.test(email);
-        // }
-
-        // if (($FirstName.val().length === 0) || ($FirstName.val().length > 20) || ($LastName.val().length === 0) || ($LastName.val().length > 20) || (!validateEmail($Email.val())) || $ReEmail.val() !== $Email.val() || $Password.val().length < 8) {
-        //     alert('Incorrect data! Check again!');
-        //     return false;
-        // }
         return true;
     }
 });
