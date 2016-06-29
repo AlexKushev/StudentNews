@@ -5,13 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.ejb.Singleton;
-import javax.ejb.Startup;
-import javax.servlet.ServletException;
-
-import com.studentsnews.utils.DatabaseUtils;
 
 /**
  * Session Bean implementation class TestDataInserter
@@ -36,9 +30,9 @@ public class TestDataInserter {
 		}
 
 		if (connection != null) {
-			System.out.println("az sym bog");
+			System.out.println("Connected successfuly to the database");
 		} else {
-			System.out.println("az sym pedal");
+			System.out.println("Connection failed");
 		}
 		
 		return connection.createStatement();
