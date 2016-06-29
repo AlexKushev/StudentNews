@@ -2,6 +2,7 @@ $(document).ready(function() {
 
     var userData = null;
 
+    // CHECK IF LOGGED IN
     $.getJSON("rest/user/current", function(data) {
         userData = data.user;
         if (userData.userName == null) {
@@ -9,6 +10,7 @@ $(document).ready(function() {
         }
     });
 
+    // ADD ARTICLE
     var addArticleButton = $("#add-button");
     addArticleButton.click(function() {
         var articleDataSend = {
@@ -92,7 +94,7 @@ $(document).ready(function() {
         var articleTitle = $('#article-title').val(),
             articleBody = $('#article-body').val();
 
-        if (articleTitle === '' || articleBody === '') {
+        if (articleTitle === '' || articleTitle.length < 5 || articleTitle.length > 40 || articleBody === '' || articleBody.length < 100) {
             alert('Incorect data!');
             return false;
         }

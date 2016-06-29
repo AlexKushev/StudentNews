@@ -53,6 +53,11 @@ a {
     max-width: 800px;
     width: 100%;
     margin: 0 auto;
+    padding: 0 4%;
+    position: relative;
+}
+
+header {
     position: relative;
 }
 
