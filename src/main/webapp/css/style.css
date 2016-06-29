@@ -1,9 +1,12 @@
-/*@import url(http://db.onlinewebfonts.com/c/510a1daa7bd252a21afb33ac07c831ea?family=Helvetica+Inserat+LT+Std);
 @font-face {
-    font-family: "HelveticaInseratLTW01-Rg";
-    src: url("http://db.onlinewebfonts.com/t/f3966cde0fce386d17e36fba8cef9281.eot");
-    src: url("http://db.onlinewebfonts.com/t/f3966cde0fce386d17e36fba8cef9281.eot?#iefix") format("embedded-opentype"), url("http://db.onlinewebfonts.com/t/f3966cde0fce386d17e36fba8cef9281.woff2") format("woff2"), url("http://db.onlinewebfonts.com/t/f3966cde0fce386d17e36fba8cef9281.woff") format("woff"), url("http://db.onlinewebfonts.com/t/f3966cde0fce386d17e36fba8cef9281.ttf") format("truetype"), url("http://db.onlinewebfonts.com/t/f3966cde0fce386d17e36fba8cef9281.svg#HelveticaInseratLTW01-Rg") format("svg");
-}*/
+    font-family: 'HelveticaInserat';
+    src: url('fonts/HelveticaInserat.eot');
+    src: url('fonts/HelveticaInserat.eot?#iefix') format('embedded-opentype'), 
+    url('fonts/HelveticaInserat.woff2') format('woff2'), 
+    url('fonts/HelveticaInserat.woff') format('woff'), 
+    url('fonts/HelveticaInserat.ttf') format('truetype'), 
+    url('fonts/HelveticaInserat#HelveticaInserat') format('svg');
+}
 
 html,
 body {
@@ -62,7 +65,7 @@ header {
 }
 
 header h1 {
-    /*font-family: "HelveticaInseratLTW01-Rg";*/
+    font-family: 'HelveticaInserat';
     font-size: 2.5em;
     font-weight: bold;
     text-align: center;
