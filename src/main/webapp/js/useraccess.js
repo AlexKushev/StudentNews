@@ -1,6 +1,15 @@
 $(document).ready(function() {
     var loginButton = $('#login-button'),
-        registerButton = $('#register-button');
+        registerButton = $('#register-button'),
+        userData = null;
+
+    // CHECK IF LOGGED IN
+    $.getJSON('rest/user/current', function(data) {
+        userData = data.user;
+        if (userData.userName != null) {
+            window.location.href = 'home.html';
+        }
+    });
 
     loginButton.on('click', function() {
         login();
