@@ -1,109 +1,53 @@
 $(document).ready(function() {
-    var loginButton = $("#login-button"),
-        registerButton = $("#register-button");
 
-    loginButton.on("click", function() {
-        login();
+    var techNews = $('#techNews'),
+        universityNews = $('#universityNews'),
+        articleManager = $('#articleManager'),
+        articleData = null,
+        articleExist = false,
+        userData = null;
+
+    $.getJSON('rest/user/current', function(data) {
+        userData = data.user;
     });
 
-    $('#login-password').keydown(function(e) {
-        if (e.keyCode == 13) {
-            login();
-        }
-    });
+    $.getJSON('rest/article', function(data) {
+        articleData = data.article;
+        var articleItem, 
+            i,
+            len = articleData.length;
 
-    registerButton.click(function() {
-        var registerData = {
-            user: {
-                firstName: $("#register-firstName").val(),
-                lastName: $("#register-lastName").val(),
-                userName: $("#register-userName").val(),
-                password: $("#register-password").val()
-            }
-        };
-
-        // Validates user input
-        if (!validate()) {
-            return;
-        }
-
-        $.ajax({
-                url: 'rest/user/register',
-                type: "POST",
-                contentType: "application/json",
-                data: JSON.stringify(registerData)
-            })
-            .success(function() {
-                alert("Register success! You can now login in the system!");
-                window.location = "index.html";
-            })
-            .fail(function() {
-                alert("Invalid data or user with this data already exists!");
-            })
-            .always(function() {
-                $("#register-form").submit(function() {
-                    var form = this;
-                    setTimeout(function() {
-                        $(':submit', form).attr('disabled', true);
-                    }, 50);
-                });
-            });
-    });
-
-    function login() {
-        var userInput = {
-            user: {
-                userName: $("#login-userName").val(),
-                password: $("#login-password").val()
-            }
-        };
-
-        $.ajax({
-            url: 'rest/user/login',
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify(userInput),
-            statusCode: {
-                401: function() {
-                    alert("Wrong username or password!");
-                },
-                200: function() {
-
-                    $.ajax({
-                        type: "GET",
-                        complete: function() {
-                            window.location.replace("home.html");
-                        }
-                    });
+        for (i = 0; i < len; i += 1) {
+            articleItem = articleData[i];
+            if (articleItem.articleType == 'TechNews' && articleItem.isPublished == 1) {
+                techNews.append('<article><h2 class="articleHeading">' + articleItem.title + '</h2><p class="author">posted by ' + articleItem.author + '</p><p class="articleContent">' + articleItem.text + '</p></article>');
+            } else if (articleItem.articleType == "UniversityNews" && articleItem.isPublished == 1) {
+                universityNews.append('<article><h2 class="articleHeading">' + articleItem.title + '</h2><p class="author">posted by ' + articleItem.author + '</p><p class="articleContent">' + articleItem.text + '</p></article>');
+            } else
+            if (userData.admin === 1) {
+                if (articleItem.title !== null) {
+                    articleExist = true;
+                    articleManager.append('<tr><td>' + articleItem.title + '</td><td>' + articleItem.articleType + '</td><td><a href="javascript:;" id="approveArticle" class="btn btn-success" role="button" data-id="' + articleItem.id + '">Approve</a></td><td><a href="javascript:;" id="deleteArticle" class="btn btn-danger" role="button" data-id="' + articleItem.id + '">Delete</a></td>');
+                }
+            } else {
+                if (articleItem.author == userData.userName) {
+                    articleExist = true;
+                    articleManager.append('<tr><td>' + articleItem.title + '</td><td>' + articleItem.articleType + '</td><td><a href="javascript:;" id="deleteArticle" class="btn btn-danger" role="button" data-id="' + articleItem.id + '">Delete</a></td>');
                 }
             }
-        });
-    }
-
-    function validate() {
-        var firstName = $('#register-firstName'),
-            lastName = $('#register-lastName'),
-            userName = $('#register-userName'),
-            password = $('#register-password'),
-            passwordRe = $('#register-password-re');
-
-        if (firstName.val().length < 2 || lastName.val().length < 2 || userName.val().length < 2) {
-            alert('Invalid data! First Name, Last Name and Username must consist of at least 2 symbols!');
-            return false;
-        } else if (firstName.val().length > 15 || lastName.val().length > 15 || userName.val().length > 15) {
-            alert('Invalid data! First Name, Last Name and Username must consist of no more than 15 symbols!');
         }
-
-        if (password.val().length < 5 || password.val().length > 15) {
-            alert('Password length must have more than 5 and less than 15 symbols!');
-            return false;
+        if (!articleExist) {
+            articleManager.append('<tr><td>No articles to show.</td></tr>');
         }
+    });
 
-        if (password.val() !== passwordRe.val()) {
-            alert('Passwords do not match!');
-            return false;
-        }
+    $('nav a').click(function() {
+        tabSwitch(this);
+    });
 
-        return true;
+    function tabSwitch(element) {
+        var tab_id = $(element).attr('data-tab');
+        $('.tab-content').removeClass('current');
+        $("." + tab_id).addClass('current');
     }
 });
