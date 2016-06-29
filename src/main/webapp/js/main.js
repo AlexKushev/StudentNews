@@ -1,8 +1,8 @@
 $(document).ready(function() {
-    var $LoginButton = $("#login-button"),
-        $RegisterButton = $("#register-button");
+    var loginButton = $("#login-button"),
+        registerButton = $("#register-button");
 
-    $LoginButton.on("click", function() {
+    loginButton.on("click", function() {
         login();
     });
 
@@ -12,7 +12,7 @@ $(document).ready(function() {
         }
     });
 
-    $RegisterButton.click(function() {
+    registerButton.click(function() {
         var registerData = {
             user: {
                 firstName: $("#register-firstName").val(),
@@ -51,7 +51,7 @@ $(document).ready(function() {
     });
 
     function login() {
-        var userData = {
+        var userInput = {
             user: {
                 userName: $("#login-userName").val(),
                 password: $("#login-password").val()
@@ -62,7 +62,7 @@ $(document).ready(function() {
             url: 'rest/user/login',
             type: "POST",
             contentType: "application/json",
-            data: JSON.stringify(userData),
+            data: JSON.stringify(userInput),
             statusCode: {
                 401: function() {
                     alert("Wrong username or password!");
@@ -81,25 +81,25 @@ $(document).ready(function() {
     }
 
     function validate() {
-        var $FirstName = $('#register-firstName'),
-            $LastName = $('#register-lastName'),
-            $userName = $('#register-userName'),
-            $Password = $('#register-password'),
-            $RePassword = $('#register-password-re');
+        var firstName = $('#register-firstName'),
+            lastName = $('#register-lastName'),
+            userName = $('#register-userName'),
+            password = $('#register-password'),
+            passwordRe = $('#register-password-re');
 
-        if ($FirstName.val().length < 2 || $LastName.val().length < 2 || $userName.val().length < 2) {
+        if (firstName.val().length < 2 || lastName.val().length < 2 || userName.val().length < 2) {
             alert('Invalid data! First Name, Last Name and Username must consist of at least 2 symbols!');
             return false;
-        } else if ($FirstName.val().length > 15 || $LastName.val().length > 15 || $userName.val().length > 15) {
+        } else if (firstName.val().length > 15 || lastName.val().length > 15 || userName.val().length > 15) {
             alert('Invalid data! First Name, Last Name and Username must consist of no more than 15 symbols!');
         }
 
-        if ($Password.val().length < 5 || $Password.val().length > 15) {
+        if (password.val().length < 5 || password.val().length > 15) {
             alert('Password length must have more than 5 and less than 15 symbols!');
             return false;
         }
 
-        if ($Password.val() !== $RePassword.val()) {
+        if (password.val() !== passwordRe.val()) {
             alert('Passwords do not match!');
             return false;
         }

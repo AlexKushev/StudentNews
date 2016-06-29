@@ -1,7 +1,6 @@
 $(document).ready(function() {
 
-    var articleData = null,
-        userData = null;
+    var userData = null;
 
     $.getJSON("rest/user/current", function(data) {
         userData = data.user;
@@ -10,10 +9,9 @@ $(document).ready(function() {
         }
     });
 
-
-    var $AddButton = $("#add-button");
-    $AddButton.click(function() {
-        var oArticleData = {
+    var addArticleButton = $("#add-button");
+    addArticleButton.click(function() {
+        var articleDataSend = {
             article: {
                 title: $("#article-title").val(),
                 articleType: $('#category option:selected').text().replace(/ /g, ''),
@@ -29,7 +27,7 @@ $(document).ready(function() {
                 url: 'rest/article/add',
                 type: "POST",
                 contentType: "application/json",
-                data: JSON.stringify(oArticleData)
+                data: JSON.stringify(articleDataSend)
             })
             .success(function() {
                 alert("Added successfully! Now wait for approval!");
@@ -91,10 +89,10 @@ $(document).ready(function() {
     });
 
     function validate() {
-        var $articleTitle = $('#article-title').val(),
-            $articleBody = $('#article-body').val();
+        var articleTitle = $('#article-title').val(),
+            articleBody = $('#article-body').val();
 
-        if ($articleTitle === '' || $articleBody === '') {
+        if (articleTitle === '' || articleBody === '') {
             alert('Incorect data!');
             return false;
         }
